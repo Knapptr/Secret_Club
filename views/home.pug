@@ -1,0 +1,27 @@
+extends layout
+    
+block content
+    include navbar  
+    
+    .container
+        h1 Hi, #{currentUserName.toUpperCase()}!
+        a.font-weight-bold.text-success(href='/post/create') Create Post
+        hr
+
+    .container
+        h3.text-primary Post Feed
+        
+        if posts
+            - posts.sort((postA,postB)=>{ return postB.date-postA.date})
+            ul.list-group
+                for post in posts
+                    li.list-group-item
+                        h3!= post.title
+                        p!= post.post
+                        if currentUser._id.toString()===post.user._id.toString()
+                            a(href="/post/"+post._id+"/edit") Edit Post
+                        h5 by: #{post.user.username.toUpperCase()}
+                        p= post.date
+                       
+                        
+                        

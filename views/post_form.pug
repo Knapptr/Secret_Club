@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    include navbar
+    .container-md
+        form(action="", method="post")
+                    .form-group
+                        label(for="title") Post Title:
+                        input.form-control(type="text", name="title" id="title" placeholder="Post Title" value!=post?post.title:"")
+                        textarea.form-control(name="post", rows="10" placeholder="Write post body here")!= post?post.post:""
+                        button.form-control.btn.btn-success.my-4 #{post?"Submit Changes":"Submit Post"}
+        .errorPane
+            if errors
+                ul.list-group
+                    for error in errors
+                        li.list-group-item.bg-danger.text-light= error.msg
+

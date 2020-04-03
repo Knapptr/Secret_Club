@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+ 
+    
+
+    .container.text-center
+        h3 Sign Up
+        form(action="" method="post")
+            .form-group
+                label(for="firstName") First Name       
+                input.form-control(id="firstName" type="text" name="firstName" placeholder="first name"  value=(user?user.first_name:""))
+                label(for="lastName") Last Name     
+                input.form-control(id="lastName" type="text" name="lastName" placeholder="last name" value=(user?user.last_name:""))
+                label(for="username") Username      
+                input.form-control(id="username" type="text" name="username" placeholder="user name" value=(user?user.username:""))
+                label(for="password") Password  
+                input.form-control(id="password" type="password" name="password" placeholder="password")
+                label(for="confPassword") Confirm Password     
+                input.form-control(id="confPassword" type="password" name="confirmPassword" placeholder="confirm password")
+                p.text-left.font-italic password is cAsE sEnsItiVe!
+                button.btn.btn-success(type='submit') submit
+                .logLink
+                    a(href="/log-in") Already a member? Log-in.
+        if errors
+            ul.list-group
+            each error in errors
+                li.list-group-item.bg-danger.text-light= error.msg
+

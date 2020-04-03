@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+    h1 Thanks for Signing Up!
+
+    h3  Log In with your new credentials:
+    form(action="/log-in", method="post")
+        input(type="text" name="username" required)
+        input(type="password" name="password" required)
+        button  Log In
+    a(href="/sign-up") Create another account.
