@@ -5,23 +5,36 @@ block content
     
     .container
         h1 Hi, #{currentUserName.toUpperCase()}!
-        a.font-weight-bold.text-success(href='/post/create') Create Post
+            if message
+                h4.bg-warning= message
+            if currentUser.innerCircle
+                h4
+                    em All Hail Tri-Solaris
+                |You're an inner-circle member.
+                hr
+                .container.memberPane
+                    a.font-weight-bold.text-success(href='/post/create') Create Post
+                    a.font-weight-bold.text-success(href=`/user/${currentUser._id}/posts`) View My Posts
         hr
 
     .container
-        h3.text-primary Post Feed
+        
         
         if posts
+            h6.text-primary.font-italic.text-center POST-FEED
             - posts.sort((postA,postB)=>{ return postB.date-postA.date})
             ul.list-group
                 for post in posts
                     li.list-group-item
                         h3!= post.title
                         p!= post.post
-                        if currentUser._id.toString()===post.user._id.toString()
-                            a(href="/post/"+post._id+"/edit") Edit Post
-                        h5 by: #{post.user.username.toUpperCase()}
-                        p= post.date
+                        if currentUser.innerCircle
+                            if currentUser._id.toString()===post.user._id.toString()
+                                a(href=`/post/${post._id}/edit`) Edit Post
+                            if currentUser.admin || currentUser._id.toString() === post.user._id.toString()
+                                a(href="/post/"+post._id+"/delete") Delete Post
+                            h5 by: #{post.user.username.toUpperCase()}
+                            p= post.date
                        
                         
                         

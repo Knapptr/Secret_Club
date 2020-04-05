@@ -24,7 +24,6 @@ exports.submit_post = [
             if (err) { return next(err) };
             User.findById(req.user._id, function (err, user) {
                 if (err) { return next(err) }
-                console.log(user)
                 user.posts.push(post._id)
                 user.save(function (err, savedUsr) {
                     if (err) {return next(err) };
@@ -65,4 +64,36 @@ exports.make_edit = [
         })
     }
 ]
+exports.delete_confirm = function (req, res, next) {
+    
+    Post.findById(req.params.id).populate('user').exec(function (err, post) {
+        if (err) { return next(err) };
+        if (!post) {
+            let noPost = new Error("post not found")
+            noPost.status = 404
+            return next(noPost);
+        }
+        if (req.user._id.toString() !== post.user._id.toString() && !req.user.admin) {
+            console.log('Unauthorized delete attempt')
+            return res.redirect('/home')
+        }
+        res.render('post_delete',{title:"Delete post",post:post})
+    })
+}
+exports.delete = function (req, res, next) {
+    Post.findById(req.body.postID).populate('user').exec(function (err, post) {
+        if (err) { return next(err) };
+        if (req.user.admin || req.user._id.toString() === post.user._id.toString()) {
+            Post.findByIdAndDelete(req.body.postID, function (err, success) {
+                if (err) { return next(err) }
+                console.log('Post deleted');
+                return res.redirect('/home')
+            })
+        } else {
+            console.log('Unauthorized delete attempt')
+            return res.redirect('/home')
+        }
+    })
+    
+}
 //exports.create_post

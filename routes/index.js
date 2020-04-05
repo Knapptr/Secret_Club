@@ -37,4 +37,14 @@ router.get('/post/:id/edit', posts.edit_post)
 
 router.post('/post/:id/edit', posts.make_edit);
 
+router.get('/inner-circle', user.membership);
+
+router.post('/inner-circle', user.membership_post);
+
+router.get('/user/:id/posts', user.user_posts);
+
+router.get('/post/:id/delete', posts.delete_confirm);
+
+router.post('/post/:id/delete', posts.delete);
+
 module.exports = router;

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+    include navbar
+
+    if currentUser.innerCircle != true
+        .container
+            form(action="", method="post")
+                .form-group
+                    label(for="secret") What planet did she come from? Enter answer in camelCase.
+                    input.form-control(type="password", name="secret")
+                    button.btn.btn-success  Enter
+            .errorsPane
+                if errors
+                    ul.list-group
+                        for error in errors
+                            li.list-group-item.bg-danger= error.msg
+    else
+        .container
+            h1 You're already a member of the inner circle. Lorem Ipsum, comrade.        
+

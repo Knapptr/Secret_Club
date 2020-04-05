@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+    include navbar
+
+    .container
+        h3 Delete this post?
+        hr
+        .container
+            h3= post.title
+            hr
+            p= post.post
+            hr
+            p by #{post.user.username}
+            br
+            p #{post.date}
+        form(action="", method="post")
+            input(type="hidden", name="postID" value=post._id)
+            button.btn.btn-danger Delete

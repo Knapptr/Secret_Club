@@ -4,6 +4,9 @@ ul.nav
         a.nav-link(href="/home") Post-Feed
     li.nav-item
         a.nav-link(href=`/`) Profile (!)
+    if currentUser.innerCircle != true
+        li 
+            a.nav-link(href='/inner-circle') Inner Circle
     li.nav-item
         form(action="/logout", method="post")
             button.nav-link.btn.btn-primary Log Out
