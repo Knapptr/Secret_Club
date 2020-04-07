@@ -2,6 +2,8 @@
 
 This needs a .ENV that contains the following variables:
 
- DB_PW =
- DB_UN =
- SESSION_SECRET = 
+ DB_PW = mongoDB pw
+ DB_UN = mongoDB un
+ SESSION_SECRET = secret for express-session
+ CLUBADMIN_PW = password to join 'inner circle' as admin
+ CLUB_PW = password to join inner circle as regular user
