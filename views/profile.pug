@@ -16,7 +16,7 @@ block content
                 li.py-1.list-group-item.lead
                     .profileTop.d-flex.justify-content-between.align-items-center
                         p.my-0 User: #[strong #{user.username.toUpperCase()}]
-                        if currentUser._id.toString()===user._id.toString() && currentUser.username!=="user"
+                        if currentUser._id.toString()===user._id.toString() && currentUser.username!=="user" && currentUser.username!=="innercircle"
                                 a.medText.py-0(href=`/user/${currentUser._id}/edit`) edit
                         else
                             p.smallText This demo account can not edit the username. 
