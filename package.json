@@ -1,10 +1,14 @@
 {
   "name": "secret_club",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.1"
+  },
   "description": "Project for The Odin Project",
   "main": "app.js",
   "scripts": {
-    "devServe": "nodemon app.js"
+    "devServe": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

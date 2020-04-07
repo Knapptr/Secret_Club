@@ -6,9 +6,10 @@ block content
     .container.align-items-center
         .row.justify-content-center
             .col-sm-12.col-md-8
+                h1.text-center.text-md-left Hello #{currentUser.username.toUpperCase()}
                 .row.align-items-center
                     .col-sm-12.col-md-6.text-center.text-md-left
-                        h1 Hello #{currentUser.username.toUpperCase()}
+                        
                         if currentUser.innerCircle
                             p.lead.font-italic.text-secondary All Hail Tri-Solaris
                             p.text-secondary.font-italic.text-warning You are a member of the Earth-Trisolaris Organization
