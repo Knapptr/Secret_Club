@@ -13,12 +13,15 @@ block content
                         if currentUser.innerCircle
                             p.lead.font-italic.text-secondary All Hail Tri-Solaris
                             p.text-secondary.font-italic.text-warning You are a member of the Earth-Trisolaris Organization
+                        else
+                            p.p-2.bg-warning #[strong Note:] as a 'basic-user' you will not see what user has posted content.
+                                |  To have greater access, use a 'inner-circle' account, or join the 'inner circle' above. 
                     .col.d-none.d-sm-none.d-md-block.col-md-6
                         if currentUser.innerCircle
                             a.btn.btn-success.font-bold.d-block.my-3(href="/post/create") Create new post
                    
                             a.btn.btn-success.font-bold.d-block.my-3(href=`/user/${currentUser._id}/posts`) View your posts
-                             
+                           
                                
             if currentUser.innerCircle
                 .row.text-center.justify-content-center.mb-3.d-md-none
