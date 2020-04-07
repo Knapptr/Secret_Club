@@ -7,3 +7,4 @@ This needs a .ENV that contains the following variables:
  SESSION_SECRET = secret for express-session
  CLUBADMIN_PW = password to join 'inner circle' as admin
  CLUB_PW = password to join inner circle as regular user
+ PORT = port to host server
