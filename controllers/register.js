@@ -58,7 +58,7 @@ exports.sign_up = [
             newUser.password = cryptPW;
             newUser.save(function (error, result) {
                 if (error) { return next(error) }
-                res.render('signed_up', {title:'Thanks for signing up!',signedUp:result})
+                res.redirect('/log-in')
             })
         })
     }

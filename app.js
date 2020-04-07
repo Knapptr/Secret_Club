@@ -4,13 +4,16 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const bouncer = require('./bouncer');
+const compression = require('compression');
+const helmet = require('helmet');
 //passport config
 const passportInit = require('./passportconfig.js');
 //init config
 passportInit(passport);
 //initexpress
 app = express();
-app.set('view engine','pug')
+
+app.set('view engine', 'pug')
 const router = require('./routes/index');
 // db
 const mongoose = require('mongoose');
@@ -21,6 +24,8 @@ db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
    
 //Middleware config
+app.use(helmet());
+app.use(compression());
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 app.use(flash());
 app.use(passport.initialize());

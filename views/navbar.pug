@@ -1,15 +1,21 @@
 
-ul.nav
-    li.nav-item
-        a.nav-link(href="/home") Post-Feed
-    li.nav-item
-        a.nav-link(href=`/`) Profile (!)
-    if currentUser.innerCircle != true
-        li 
-            a.nav-link(href='/inner-circle') Inner Circle
-    li.nav-item
-        form(action="/logout", method="post")
-            button.nav-link.btn.btn-primary Log Out
+.container
+    .row
+        .col
+            nav.navbar.border-bottom
+
+                a.navbar-brand.px-3(href="/home") FOS
+                
+                a.navbar-nav.px-1(href=`/user/${currentUser._id}`) Profile
+                if currentUser.innerCircle != true
+                    a.navbar-nav.px-1(href='/inner-circle') Inner Circle
+                if currentUser.innerCircle
+                    a.navbar-nav.px-1(href="/inner-circle/members") Inner Circle Members
+                if currentUser.admin
+                    a.navbar-nav.px-1(href="/admin") Admin Dashboard 
+
+                form(action="/logout", method="post")
+                    button.btn-primary.btn.ml-a Log Out
 
 
     

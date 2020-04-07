@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    
+    include navbar
+    .container
+        h4.text-center Administrator Dashboard
+        .row.justify-content-center: div.col-sm-12.col-md-8
+            if users
+                ul.list-group
+                    for user in users
+                        li.list-group-item
+                            
+                            a.lead(href=`/user/${user._id}`)= user.username.toUpperCase()
+                            p.lead #{user.posts.length} posts
+                            h5 Membership status:
+                                form.d-inline(action="/membershipStatus", method="post")
+                                    input(type="hidden", name="userID" value=user._id)
+                                    select.form-control.membershipSelect(id=user._id+"select" name="membershipState")
+                                        option(value="admin" selected=user.admin?true:false) Admin
+                                        option(value="innerCircle" selected=user.innerCircle?user.admin?false:true:false) Inner-Circle
+                                        option(value="basicMember" selected=user.innerCircle?user.admin?false:false:true) Basic Member
+                                    button.my-1.btn.btn-warning Set Membership
+                                a.justify-self-end.my-1.mx-5.btn.btn-danger(href=`/user/${user._id}/delete`) Delete User

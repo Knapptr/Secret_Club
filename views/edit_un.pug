@@ -1,0 +1,33 @@
+extends layout
+
+block content
+
+    include navbar
+
+    .container.align-items-center
+        .row.justify-content-center
+            .col-12
+                .row.align-items-center
+                    .col-sm-12.col-md-12.text-center
+                        h4 Change Username
+                            
+    
+        .row.justify-content-center: div.col-sm-12.col-md-8
+            ul.list-group
+                li.list-group-item
+                    p.my-0 Current Username: #[strong #{currentUser.username.toUpperCase()}]
+                li.list-group-item
+                    form.form-group(action="", method="post")
+                        label.font-weight-bold(for="username") New Username:
+                        input.form-control(type="text", name="username" id="username" placeholder=currentUser.username)
+                        button.form-control.btn.btn-warning Change Username
+            if errors
+                div.errorPane
+                    ul.list-group
+                        for error in errors
+                            li.list-group-item.bg-danger= error.msg
+                    
+
+
+           
+            

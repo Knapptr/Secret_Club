@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+    include navbar
+
+    .container
+        h3 Delete this user?
+        p Note: If you delete this user they will not be able to log in, all their posts will be removed.
+        |Changing their status to 'Basic Member' will restrict access without removing posts & the user.
+
+        hr
+        .container
+            h3= user.username
+            h5 Deleting this user will remove #{user.posts.length} posts.
+            form(action="", method="post")
+                input(type="hidden", name="userID" value=user._id)
+                button.btn.btn-danger Delete

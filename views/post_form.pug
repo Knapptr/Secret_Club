@@ -2,10 +2,10 @@ extends layout
 
 block content
     include navbar
-    .container-md
+    .row.justify-content-center: div.col-sm-12.col-md-8
+        h4.mb-4.text-center Make a post
         form(action="", method="post")
                     .form-group
-                        label(for="title") Post Title:
                         input.form-control(type="text", name="title" id="title" placeholder="Post Title" value!=post?post.title:"")
                         textarea.form-control(name="post", rows="10" placeholder="Write post body here")!= post?post.post:""
                         button.form-control.btn.btn-success.my-4 #{post?"Submit Changes":"Submit Post"}

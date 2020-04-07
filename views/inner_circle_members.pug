@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+    include navbar
+    .row.justify-content-center: div.col-sm-12.col-md-8
+        .container
+            h4.text-center Members of the Earth Tri-Solaris Organization
+            .container
+                ul.list-group
+                    for user in users
+                        li.list-group-item
+                            a(href=`/user/${user._id}`)= user.username.toUpperCase()
+                            h6.font-italic= user.admin?"Administrator":"Inner-Circle Party Member"
+                            h6 Posts #{user.posts.length}

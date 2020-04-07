@@ -4,22 +4,30 @@ block content
 
 
     .container.text-center
-        h3 Log In
-        .container-sm
+        .jumbotron.bgColor
+            h1.text-primary Frontiers of Science
+                h5.text-secondary.font-italic Solving the Three Body Problem
+        .container
+            .row
+                .col
+                .col-md-7.col-lg-4.border
        
-            form(action="", method="post")
-                .form-group
-                    label(for="username") Username:
-                    input.form-control(type="text", name="username" id="username" value=(username?username:""))
-                    label(for="password") Password:
-                    input.form-control(type="password", name="password" id="password")
-                    button.form-control.btn.btn-success.my-4 Sign In
-            .registerLink.text-center
-                a(href="/sign-up") Don't have an account? Register Here.
+                    form(action="", method="post")
+                        .form-group
+                            label(for="username") Username:
+                            input.form-control(type="text", name="username" id="username" value=(username?username:""))
+                            label(for="password") Password:
+                            input.form-control(type="password", name="password" id="password")
+                            button.form-control.btn.btn-success.my-4 Sign In
+                    if errors
+                    div.errorPane
+                        ul.list-group
+                            for error in errors
+                                li.list-group-item.bg-danger= error.msg
+                    .registerLink.text-center
+                        a(href="/sign-up") Don't have an account? Register Here.
+                   
+                .col
 
-        if errors
-            div.errorPane
-                ul.list-group
-                    for error in errors
-                        li.list-group-item.bg-danger= error.msg
-    
+               
+            

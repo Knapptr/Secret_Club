@@ -47,4 +47,22 @@ router.get('/post/:id/delete', posts.delete_confirm);
 
 router.post('/post/:id/delete', posts.delete);
 
+router.get('/user/:id/delete', user.delete_confirm);
+
+router.post('/user/:id/delete', user.delete_user);
+
+router.get('/user/:id/edit', user.edit_UN)
+
+router.post('/user/:id/edit',user.set_UN)
+
+router.get('/user/:id', user.profile)
+
+router.get('/admin', user.admin);
+
+router.get('/inner-circle/members', user.inner_circle_list);
+
+router.post('/membershipStatus', user.update_status);
+
+
+
 module.exports = router;

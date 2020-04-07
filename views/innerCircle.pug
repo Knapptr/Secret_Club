@@ -4,19 +4,26 @@ block content
 
     include navbar
 
-    if currentUser.innerCircle != true
-        .container
-            form(action="", method="post")
-                .form-group
-                    label(for="secret") What planet did she come from? Enter answer in camelCase.
-                    input.form-control(type="password", name="secret")
-                    button.btn.btn-success  Enter
-            .errorsPane
-                if errors
-                    ul.list-group
-                        for error in errors
-                            li.list-group-item.bg-danger= error.msg
-    else
-        .container
-            h1 You're already a member of the inner circle. Lorem Ipsum, comrade.        
+    .row.justify-content-center: div.col-sm-12.col-md-8
+        .jumbotron.bg-info.my-4
+            h4 Join The Inner Circle
+            p.text-light Membership grants access to the ETO.
+            | To join, enter the invite password given to you by a member of the ETO
+            | If you are applying as an administrator- please enter the requisite code.
+
+        if currentUser.innerCircle != true
+            .container
+                form(action="", method="post")
+                    .form-group.text-center
+                        label(for="secret") ETO Entry Code:
+                        input.form-control(type="password", name="secret")
+                        button.my-4.btn.btn-success  Enter
+                .errorsPane
+                    if errors
+                        ul.list-group
+                            for error in errors
+                                li.list-group-item.bg-danger= error.msg
+        else
+            .container
+                h1 You're already a member of the inner circle. Hail Tri-Solaris, comrade.        
 

@@ -1,3 +1,14 @@
 body{
-    background: rgb(236, 236, 236);
+    background: rgb(255, 251, 234);
+}
+.bgColor{
+    background: rgb(255, 251, 234);
+
+
+}
+.smallText{
+    font-size: 10px;
+}
+.medText{
+    font-size: 14px;
 }

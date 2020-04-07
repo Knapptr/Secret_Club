@@ -5,16 +5,18 @@ block content
     include navbar
 
     .container
-        h3 Delete this post?
-        hr
-        .container
-            h3= post.title
-            hr
-            p= post.post
-            hr
-            p by #{post.user.username}
-            br
-            p #{post.date}
-        form(action="", method="post")
-            input(type="hidden", name="postID" value=post._id)
-            button.btn.btn-danger Delete
+        .row.justify-content-center
+            .col-sm-12.col-md-6.col-xl-5
+                h3 Delete this post?
+                hr
+                .container.list-group-item
+                    h3= post.title
+                    hr
+                    p!= post.post
+                    hr
+                    p by #[a(href=`/user/${post.user._id}`) #{post.user.username}] 
+                    br
+                    p #{post.formatDate}
+                form(action="", method="post")
+                    input(type="hidden", name="postID" value=post._id)
+                    button.form-control.btn.btn-danger Delete

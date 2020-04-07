@@ -3,6 +3,9 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 exports.post_form = function (req, res, next) {
+    if (!req.user.innerCircle) {
+        return res.redirect('/home')
+    }
     res.render('post_form');
 }
 exports.submit_post = [
@@ -37,6 +40,9 @@ exports.submit_post = [
 ]
 
 exports.edit_post = function (req, res, next) {
+    if (!req.user.innerCircle) {
+        return res.redirect('/home')
+    }
 
     Post.findById(req.params.id, function (err, post) {
         if (post.user._id.toString() !== req.user._id.toString()) {
@@ -73,6 +79,14 @@ exports.delete_confirm = function (req, res, next) {
             noPost.status = 404
             return next(noPost);
         }
+        User.findById(post.user).exec(function (err, user) {
+            if (err) { return next(err) }
+            if (!user) { return next(new Error('User not found').status = 404) };
+            user.posts.splice(user.posts.indexOf(post._id), 1);
+            user.save();
+    
+    })
+        
         if (req.user._id.toString() !== post.user._id.toString() && !req.user.admin) {
             console.log('Unauthorized delete attempt')
             return res.redirect('/home')

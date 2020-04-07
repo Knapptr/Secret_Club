@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const Schema = mongoose.Schema;
 
@@ -10,5 +11,14 @@ const Post = new Schema({
     
 });
 
+Post.virtual('relTime').get(function () {
+    return moment(this.date).fromNow()
+})
+
+Post.virtual('formatDate').get(function () {
+    return moment(this.date).format("MMM D, YYYY h:mm a")
+})
+
 module.exports = mongoose.model("Post", Post);
+
 
