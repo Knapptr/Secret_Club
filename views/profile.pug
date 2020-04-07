@@ -16,33 +16,36 @@ block content
                 li.py-1.list-group-item.lead
                     .profileTop.d-flex.justify-content-between.align-items-center
                         p.my-0 User: #[strong #{user.username.toUpperCase()}]
-                        if currentUser._id.toString()===user._id.toString()
+                        if currentUser._id.toString()===user._id.toString() && currentUser.username!=="user"
                                 a.medText.py-0(href=`/user/${currentUser._id}/edit`) edit
+                        else
+                            p.smallText This demo account can not edit the username. 
                 li.list-group-item.lead Membership Type: #[strong #{user.admin?"Administrator":user.innerCircle?"ETO Member":"Basic User"}]
                 
-                li.list-group-item
-                    table
-                        if currentUser.admin
-                            tr
-                                th First:
-                                td.lead= user.first_name.toUpperCase()
-                            tr
-                                th Last:
-                                td.lead= user.last_name.toUpperCase()
-                        tr
-                            th Total Posts:
-                            td.lead= user.posts.length
-                        tr
-                            th Most recent activity:
-                            td.lead= user.posts.length>0?user.posts[user.posts.length-1].relTime:" Inactive"
-                if user.posts.length>0    
-                    li.list-group-item.lead.py-0 Most recent post:
-                        hr.my-0
+                if currentUser.innerCircle
+                    li.list-group-item
                         table
+                            if currentUser.admin
+                                tr
+                                    th First:
+                                    td.lead= user.first_name.toUpperCase()
+                                tr
+                                    th Last:
+                                    td.lead= user.last_name.toUpperCase()
                             tr
-                                td.lead.font-weight-bold= user.posts[user.posts.length-1].title.toUpperCase()
+                                th Total Posts:
+                                td.lead= user.posts.length
                             tr
-                                td.lead= user.posts[user.posts.length-1].post
+                                th Most recent activity:
+                                td.lead= user.posts.length>0?user.posts[user.posts.length-1].relTime:" Inactive"
+                    if user.posts.length>0    
+                        li.list-group-item.lead.py-0 Most recent post:
+                            hr.my-0
+                            table
+                                tr
+                                    td.lead.font-weight-bold= user.posts[user.posts.length-1].title.toUpperCase()
+                                tr
+                                    td.lead= user.posts[user.posts.length-1].post
                         
                     
 
